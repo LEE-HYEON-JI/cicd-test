@@ -15,7 +15,9 @@ pipeline {
         stage('Deploy Server') {
             steps {
                 sshagent(credentials: ['Deploy-Privatekey']) {
-                    sh 'sudo scp -o StrictHostKeyChecking=no index.html unbuntu@3.36.95.189:/var/www/html/'
+                    sh 'scp -o StrictHostKeyChecking=no index.html unbuntu@3.36.95.189:/home/ubuntu/'
+                    sh 'ssh -o StrictHostKeyChecking=no unbuntu@3.36.95.189: sudo cp
+                    /home/ubuntu/index.html /var/www/html/'
                 }
             }
         }
