@@ -17,6 +17,15 @@ pipeline {
                 }
             }
         }
+        stage('Docker Image Push') {
+            steps {
+                script {
+                    docker.withRegistry('', 'docker-auth') {
+                        oDockImage.push()
+                    }
+                }
+            }
+        }
         stage('Deploy Server') {
             steps {
                 sshagent(credentials: ['Deploy-Privatekey']) {
