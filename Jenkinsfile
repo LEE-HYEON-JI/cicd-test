@@ -16,8 +16,7 @@ pipeline {
             steps {
                 sshagent(credentials: ['Deploy-Privatekey']) {
                     sh 'scp -o StrictHostKeyChecking=no index.html unbuntu@3.36.95.189:/home/ubuntu/'
-                    sh 'ssh -o StrictHostKeyChecking=no unbuntu@3.36.95.189 sudo cp
-                    /home/ubuntu/index.html /var/www/html/'
+                    sh 'ssh -o StrictHostKeyChecking=no unbuntu@3.36.95.189 sudo cp /home/ubuntu/index.html /var/www/html/'
                 }
             }
         }
