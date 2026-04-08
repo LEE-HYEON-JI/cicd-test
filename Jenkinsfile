@@ -29,8 +29,8 @@ pipeline {
         stage('Deploy Server') {
             steps {
                 sshagent(credentials: ['Deploy-Privatekey']) {
-                    sh 'scp -o StrictHostKeyChecking=no index.html ubuntu@3.36.95.189:/home/ubuntu/'
-                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@3.36.95.189 sudo cp /home/ubuntu/index.html /var/www/html/'
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@3.36.95.189 docker container rm -f sampleweb'
+                    sh 'ssh -o StrictHostKeyChecking=no ubuntu@3.36.95.189 docker run -d -p 80:80 --name sampleweb ${strDockerImage}'
                 }
             }
         }
